@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kontak Kami - RasaNusantara</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a href="index.html" class="logo">RasaNusantara</a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">Tentang</a></li>
+            <li><a href="contact.html" class="active">Kontak</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="contact">
+        <h1>Hubungi Kami</h1>
+        <p>
+          Kami senang mendengar dari Anda! Isi formulir di bawah ini untuk
+          pertanyaan, pemesanan, atau kerja sama.
+        </p>
+
+        <form action="#" method="post" class="contact-form">
+          <label>Nama:</label>
+          <input type="text" name="nama" required />
+
+          <label>Email:</label>
+          <input type="email" name="email" required />
+
+          <label>Pesan:</label>
+          <textarea name="pesan" rows="5" required></textarea>
+
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2025 RasaNusantara. Semua hak cipta dilindungi.</p>
+      </div>
+    </footer>
+  </body>
+</html>
