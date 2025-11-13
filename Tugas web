@@ -1,0 +1,81 @@
+# =====================================
+# Contoh Polymorphism dalam Python (Versi Alat Musik)
+# =====================================
+
+# Polymorphism berarti satu method yang sama bisa berperilaku berbeda
+# tergantung dari objek (class) yang memanggilnya.
+
+# --- Bagian 1: Superclass ---
+class Instrument:
+    # Kelas dasar yang mewakili semua alat musik
+    def play(self):
+        # Akan di-override oleh subclass
+        raise NotImplementedError("Subclass harus mengimplementasikan method play()")
+
+# --- Bagian 2: Subclass yang meng-override method play() ---
+class Guitar(Instrument):
+    def play(self):
+        return "Strum strum 🎸"
+
+class Piano(Instrument):
+    def play(self):
+        return "Plink plonk 🎹"
+
+class Drum(Instrument):
+    def play(self):
+        return "Boom boom 🥁"
+
+# --- Bagian 3: Fungsi yang menunjukkan Polymorphism ---
+def make_instrument_play(instrument):
+    # Fungsi ini bisa menerima objek alat musik apapun
+    # dan memanggil method play() yang sesuai
+    print(f"{instrument.__class__.__name__} plays: {instrument.play()}")
+
+# --- Bagian 4: Membuat objek dan menjalankan fungsi ---
+guitar = Guitar()
+piano = Piano()
+drum = Drum()
+
+# Memanggil fungsi yang sama tapi hasilnya berbeda
+make_instrument_play(guitar)  # Output: Guitar plays: Strum strum 🎸
+make_instrument_play(piano)   # Output: Piano plays: Plink plonk 🎹
+make_instrument_play(drum)    # Output: Drum plays: Boom boom 🥁
+
+
+# --- Bagian 5: Contoh Polymorphism tanpa pewarisan (Duck Typing) ---
+class Singer:
+    # Tidak mewarisi dari Instrument tapi punya method play()
+    def play(self):
+        return "La la la 🎤"
+
+def make_it_sound(obj):
+    # Tidak peduli apakah objek turunan Instrument atau bukan,
+    # asalkan punya method play(), tetap bisa dipanggil.
+    print(f"{obj.__class__.__name__} sounds: {obj.play()}")
+
+print("\nDuck Typing Example:")
+make_it_sound(Singer())  # Output: Singer sounds: La la la 🎤
+make_it_sound(Guitar())  # Output: Guitar sounds: Strum strum 🎸
+make_it_sound(Piano())   # Output: Piano sounds: Plink plonk 🎹
+
+
+# --- Bagian 6: Operator Overloading (Ad-hoc Polymorphism) ---
+class Note:
+    # Representasi nada musik
+    def __init__(self, tone):
+        self.tone = tone
+
+    def __add__(self, other):
+        # Menggunakan operator + untuk menggabungkan dua nada
+        if not isinstance(other, Note):
+            return NotImplemented
+        return Note(self.tone + " + " + other.tone)
+
+    def __repr__(self):
+        return f"Note({self.tone})"
+
+print("\nOperator Overloading Example:")
+n1 = Note("Do")
+n2 = Note("Re")
+n3 = n1 + n2  # Memanggil __add__
+print(n3)     # Output: Note(Do + Re)
